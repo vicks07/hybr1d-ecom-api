@@ -1,0 +1,19 @@
+{
+  "name": "hybr1d",
+  "version": "1.0.0",
+  "description": "REST API for an E-Commerce Marketplace",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vicks07/hybr1d-ecom-api.git"
+  },
+  "author": "Vikram T",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/vicks07/hybr1d-ecom-api/issues"
+  },
+  "homepage": "https://github.com/vicks07/hybr1d-ecom-api#readme"
+}
