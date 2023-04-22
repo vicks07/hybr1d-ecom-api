@@ -1,4 +1,5 @@
 const app = require("./src/app");
+require('dotenv').config();
 require("./core/database");
 
 app.listen(8000, () => {

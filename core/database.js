@@ -1,6 +1,5 @@
 const { Sequelize, Model, Op, DataTypes } = require('sequelize');
 const constant = require("../config/constant");
-// const pg = require("pg")
 
 const sequelize = new Sequelize(constant.DATABASE.PG.DBNAME, constant.DATABASE.PG.USERNAME, constant.DATABASE.PG.PASSWORD, {
     dialect     : 'postgres',
