@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/vicks07/hybr1d-ecom-api/issues"
   },
-  "homepage": "https://github.com/vicks07/hybr1d-ecom-api#readme"
+  "homepage": "https://github.com/vicks07/hybr1d-ecom-api#readme",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
 }
