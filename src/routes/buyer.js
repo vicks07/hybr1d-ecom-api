@@ -1,6 +1,6 @@
 const express = require("express");
 
-const buyerRouter = express.Router;
+const buyerRouter = express.Router();
 
 buyerRouter.get("/list-of-sellers", (req, res) => {
 
