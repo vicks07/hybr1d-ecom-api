@@ -1,6 +1,7 @@
 const { Users, UserType } = require("../model/users");
 const { uuid, hashPassword, comparePassword } = require("../helpers/utility");
 const bcrypt = require("bcrypt");
+const { UserTypes } = require("../model/schema");
 
 const createUser = async (data) => {
   try {
@@ -44,7 +45,23 @@ const login = async (data) => {
   }
 };
 
+const findAllUsers = async (data) => {
+  try {
+    const users = await Users.findAll(
+      {},
+      {
+        // attributes: ["id", "name", "email", "phone"],
+        raw: true,
+      }
+    );
+    return users;
+  } catch (err) {
+    console.log(err);
+  }
+};
+
 module.exports = {
   createUser,
   login,
+  findAllUsers,
 };

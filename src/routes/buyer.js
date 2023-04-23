@@ -1,10 +1,9 @@
 const express = require("express");
 
 const buyerRouter = express.Router();
+const { getAllSellers } = require("../controllers/buyer");
 
-buyerRouter.get("/list-of-sellers", (req, res) => {
-
-});
+buyerRouter.get("/list-of-sellers", getAllSellers);
 
 buyerRouter.get("/seller-catalog/:seller_id", (req, res) => {
 

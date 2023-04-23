@@ -5,6 +5,8 @@ const userModel = {};
 const userTypeModel = {};
 
 userModel.findOne = (where, options) => Users.findOne({ where, ...options });
+userModel.findAll = (where, options) =>
+  Users.findAndCountAll({ where, includes: [UserTypes], ...options });
 userModel.create = async (params) => {
   const response = await Users.create(params, {
     fields: ["id", "name", "email", "status"],
