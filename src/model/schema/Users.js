@@ -36,12 +36,4 @@ Users.init(
   }
 );
 
-Users.sync()
-  .then((res) => {
-    console.log(res);
-  })
-  .catch((err) => {
-    console.log(err);
-  });
-
 module.exports = Users;

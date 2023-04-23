@@ -4,11 +4,11 @@ class Catalogs extends Model {}
 Catalogs.init(
   {
     id: {
-      type: DataTypes.UUIDV4,
+      type: DataTypes.UUID,
       primaryKey: true,
     },
     name: DataTypes.STRING,
-    seller: DataTypes.UUIDV4,
+    seller: DataTypes.UUID,
     status: DataTypes.INTEGER,
   },
   {

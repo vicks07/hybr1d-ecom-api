@@ -5,6 +5,8 @@ const Orders = require("./Orders");
 const Products = require("./Products");
 const Catalogs = require("./Catalogs");
 
+Users.belongsTo(UserTypes, { foreignKey: "user_type" });
+
 module.exports = {
   sequelize,
   Op,

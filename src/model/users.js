@@ -1,10 +1,17 @@
-const { Users } = require("./schema");
+const { Users, UserTypes } = require("./schema");
 
-const model = {};
+const userModel = {};
+const userTypeModel = {};
 
-model.find = (where) => Users.findOne({ where });
-model.create = async (params) => {
+userModel.findOne = (where, options) => Users.findOne({ where, ...options });
+userModel.create = async (params) => {
   const response = await Users.create(params, { returning: true });
   return response;
 };
-module.exports = model;
+
+userTypeModel.findOne = (where) => UserTypes.findOne({ where });
+
+module.exports = {
+  Users: userModel,
+  UserType: userTypeModel,
+};

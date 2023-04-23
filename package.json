@@ -5,8 +5,11 @@
   "main": "src/server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js",
-    "dev": "nodemon server.js"
+    "start": "NODE_ENV=production node server.js",
+    "dev": "NODE_ENV=development nodemon server.js",
+    "seed:dev": "npx sequelize-cli db:seed:all --env development",
+    "migrate:dev": "npx sequelize db:migrate --env development",
+    "migrate-undo:dev": "npx sequelize-cli db:migrate:undo --env development"
   },
   "repository": {
     "type": "git",

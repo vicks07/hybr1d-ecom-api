@@ -4,11 +4,11 @@ class Orders extends Model {}
 Orders.init(
   {
     id: {
-      type: DataTypes.UUIDV4,
+      type: DataTypes.UUID,
       primaryKey: true,
     },
-    seller: DataTypes.UUIDV4,
-    buyer: DataTypes.UUIDV4,
+    seller: DataTypes.UUID,
+    buyer: DataTypes.UUID,
     // products: DataTypes.ARRAY,
   },
   {

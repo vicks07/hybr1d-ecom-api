@@ -4,7 +4,7 @@ class Products extends Model {}
 Products.init(
   {
     id: {
-      type: DataTypes.UUIDV4,
+      type: DataTypes.UUID,
       primaryKey: true,
     },
     price: DataTypes.FLOAT,

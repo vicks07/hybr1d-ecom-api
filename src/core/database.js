@@ -25,6 +25,16 @@ sequelize
   .catch((error) => {
     console.log("Looks like PG connection is down!!", error);
   });
+
+// sequelize
+//   .sync({ alter: true })
+//   .then((res) => {
+//     console.log("DB Synced");
+//   })
+//   .catch((err) => {
+//     console.log(err);
+//   });
+  
 module.exports = {
   sequelize,
   Model,
