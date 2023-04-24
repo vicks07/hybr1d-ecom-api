@@ -1,4 +1,5 @@
 const { sequelize, Model, DataTypes } = require("../../core/database");
+const { uuid } = require("../../helpers/utility");
 
 class Users extends Model {}
 Users.init(
@@ -7,6 +8,7 @@ Users.init(
       type: DataTypes.UUID,
       primaryKey: true,
       allowNull: false,
+      defaultValue: uuid(),
     },
     name: DataTypes.STRING,
     phone: {

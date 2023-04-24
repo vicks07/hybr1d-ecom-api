@@ -50,7 +50,7 @@ const findAllUsers = async (data) => {
     const users = await Users.findAll(
       {},
       {
-        // attributes: ["id", "name", "email", "phone"],
+        attributes: ["id", "name", "email", "phone"],
         raw: true,
       }
     );

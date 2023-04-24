@@ -8,6 +8,8 @@ const Catalogs = require("./Catalogs");
 Users.belongsTo(UserTypes, { foreignKey: "user_type" });
 UserTypes.hasMany(Users, { foreignKey: "user_type" });
 
+Users.hasOne(Catalogs, { foreignKey: "seller" });
+
 module.exports = {
   sequelize,
   Op,

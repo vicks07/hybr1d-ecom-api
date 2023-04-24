@@ -1,4 +1,5 @@
 const { sequelize, Model, DataTypes } = require("../../core/database");
+const { uuid } = require("../../helpers/utility");
 
 class Catalogs extends Model {}
 Catalogs.init(
@@ -6,10 +7,18 @@ Catalogs.init(
     id: {
       type: DataTypes.UUID,
       primaryKey: true,
+      defaultValue: uuid(),
     },
     name: DataTypes.STRING,
-    seller: DataTypes.UUID,
-    status: DataTypes.INTEGER,
+    seller: {
+      type: DataTypes.UUID,
+      allowNull: false,
+      unique: true,
+    },
+    status: {
+      type: DataTypes.BOOLEAN,
+      defaultValue: true,
+    },
   },
   {
     sequelize,

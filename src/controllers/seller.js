@@ -1,4 +1,5 @@
 const Products = require("../services/products");
+const Catalogs = require("../services/catalogs");
 const sendResponse = require("../helpers/response");
 
 const getAllOrders = async (req, res) => {
@@ -10,7 +11,21 @@ const getAllOrders = async (req, res) => {
   });
 };
 
-const createCatalog = async (req, res) => {};
+const createCatalog = async (req, res) => {
+  const resp = await Catalogs.create(req.body);
+  if (resp.isError) {
+    return sendResponse(res, {
+      data: null,
+      status: 400,
+      msg: resp.msg,
+    });
+  }
+  return sendResponse(res, {
+    data: resp,
+    status: 200,
+    msg: "Catalog Created Successfully",
+  });
+};
 
 const addProducts = async (req, res) => {
   const resp = await Products.add(req.body);
@@ -28,4 +43,4 @@ const addProducts = async (req, res) => {
   });
 };
 
-module.exports = { getAllOrders, addProducts };
+module.exports = { getAllOrders, addProducts, createCatalog };
