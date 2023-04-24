@@ -1,5 +1,4 @@
 const { Users, UserTypes } = require("./schema");
-const { options } = require("./schema/Users");
 
 const userModel = {};
 const userTypeModel = {};

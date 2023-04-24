@@ -7,8 +7,18 @@ Products.init(
       type: DataTypes.UUID,
       primaryKey: true,
     },
-    price: DataTypes.FLOAT,
-    status: DataTypes.BOOLEAN,
+    name: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    price: {
+      type: DataTypes.FLOAT,
+      defaultValue: 0.0,
+    },
+    status: {
+      type: DataTypes.BOOLEAN,
+      defaultValue: true,
+    },
   },
   {
     sequelize,
