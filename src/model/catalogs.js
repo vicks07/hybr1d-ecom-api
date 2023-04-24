@@ -1,9 +1,12 @@
-const { Catalogs } = require("./schema");
+const { Catalogs, Users } = require("./schema");
 
 const catalogModel = {};
 
 catalogModel.findOne = (where, options) =>
-  Catalogs.findOne({ where, ...options });
+  Catalogs.findOne({
+    ...where,
+    ...options,
+  });
 catalogModel.findAll = (where, options) =>
   Catalogs.findAndCountAll({ where, includes: [], ...options });
 

@@ -20,9 +20,18 @@ const createUser = async (data) => {
         password: password,
         user_type: userType.id,
       };
-      return await Users.create(user);
+      const newUser = await Users.create(user);
+      if (newUser) {
+        return await Users.findOne(
+          {
+            id: user.id,
+          },
+          { attributes: ["id", "name", "email", "phone"], raw: true }
+        );
+      }
+      throw Error("Error while creating the user");
     }
-    throw Error("Error while creating the user");
+    throw Error("User Type does not exist");
   } catch (err) {
     return { isError: true, msg: err.message };
   }
@@ -45,18 +54,39 @@ const login = async (data) => {
   }
 };
 
-const findAllUsers = async (data) => {
+const findAllUsers = async (data = {}) => {
   try {
+    const userTypeCondition = {};
+    const userConditions = {};
+    if (data?.userType) {
+      userTypeCondition.where = { name: data.userType };
+    }
+
+    if (data?.email) {
+      userConditions.where = { email: data.email };
+    }
+
     const users = await Users.findAll(
-      {},
+      {
+        ...userConditions,
+        include: [
+          {
+            model: UserTypes,
+            attributes: ["id", "name"],
+            ...userTypeCondition,
+          },
+        ],
+      },
       {
         attributes: ["id", "name", "email", "phone"],
         raw: true,
       }
     );
+    if (users?.count == 0) throw Error("Users Not Found");
     return users;
   } catch (err) {
     console.log(err);
+    return { isError: true, msg: err.message };
   }
 };
 

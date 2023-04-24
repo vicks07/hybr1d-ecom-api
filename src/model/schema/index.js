@@ -9,6 +9,7 @@ Users.belongsTo(UserTypes, { foreignKey: "user_type" });
 UserTypes.hasMany(Users, { foreignKey: "user_type" });
 
 Users.hasOne(Catalogs, { foreignKey: "seller" });
+Catalogs.belongsTo(Users, { foreignKey: "seller", onDelete: "CASCADE" });
 
 module.exports = {
   sequelize,
