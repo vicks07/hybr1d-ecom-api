@@ -7,11 +7,15 @@ productModel.findOne = (where, options) =>
 productModel.findAll = (where, options) =>
   Products.findAndCountAll({ where, includes: [], ...options });
 productModel.add = async (params) => {
-  const response = await Products.create(params, {
-    fields: ["id", "name", "price", "status"],
-    returning: true,
-  });
-  return response;
+  try {
+    const response = await Products.create(params, {
+      fields: ["id", "name", "price", "status", "catalog_id"],
+      returning: true,
+    });
+    return response;
+  } catch (err) {
+    return null;
+  }
 };
 
 module.exports = {

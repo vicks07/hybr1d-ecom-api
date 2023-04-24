@@ -1,5 +1,5 @@
 const { Catalogs } = require("../model/catalogs");
-const { Users } = require("../model/schema");
+const { Users, Products } = require("../model/schema");
 
 const create = async (data) => {
   try {
@@ -22,9 +22,14 @@ const list = async (data) => {
           model: Users,
           attributes: ["id", "name", "email", "phone"],
         },
+        {
+          model: Products,
+          attributes: ["id", "name", "price"],
+          where: { status: true },
+        },
       ],
     };
-    const catalog = await Catalogs.findOne(where, { raw: true });
+    const catalog = await Catalogs.findAll(where, { raw: true });
     if (!catalog) {
       throw Error("No catalog found for the seller");
     }

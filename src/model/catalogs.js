@@ -8,7 +8,7 @@ catalogModel.findOne = (where, options) =>
     ...options,
   });
 catalogModel.findAll = (where, options) =>
-  Catalogs.findAndCountAll({ where, includes: [], ...options });
+  Catalogs.findAndCountAll({ ...where, ...options });
 
 catalogModel.create = async (params) => {
   const response = await Catalogs.create(params, {

@@ -28,18 +28,28 @@ const createCatalog = async (req, res) => {
 };
 
 const addProducts = async (req, res) => {
-  const resp = await Products.add(req.body);
-  if (resp.isError) {
+  const catalog = await Catalogs.list({ seller: req.body.seller });
+  if (catalog) {
+    const catalogId = catalog.id;
+    req.body.catalog_id = catalogId;
+    const resp = await Products.add(req.body);
+    if (resp.isError) {
+      return sendResponse(res, {
+        data: null,
+        status: 400,
+        msg: resp.msg,
+      });
+    }
     return sendResponse(res, {
-      data: null,
-      status: 400,
-      msg: resp.msg,
+      data: resp,
+      status: 200,
+      msg: "Product Added Successfully",
     });
   }
   return sendResponse(res, {
-    data: resp,
-    status: 200,
-    msg: "Product Added Successfully",
+    data: null,
+    status: 400,
+    msg: "Catalog Does Not exist for the seller",
   });
 };
 
