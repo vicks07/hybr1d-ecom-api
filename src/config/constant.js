@@ -9,6 +9,10 @@ const constants = {
       CONNECTION_LIMIT: process.env.PG_CONNECTION_LIMIT,
     },
   },
+  USERTYPE: {
+    BUYER: "buyer",
+    SELLER: "seller",
+  },
   // ERROR_CODES: {
   //     OK: HTMLOutputElement.
   // }

@@ -39,7 +39,10 @@ const createUser = async (data) => {
 const login = async (data) => {
   try {
     const { email, password } = data;
-    const user = await Users.findOne({ email }, { raw: true });
+    const filter = {
+      where: { email },
+    };
+    const user = await Users.findOne(filter, { raw: true });
     if (!user) {
       throw Error("Invalid Username");
     }
