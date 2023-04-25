@@ -1,16 +1,23 @@
 const express = require("express");
 
 const buyerRouter = express.Router();
-const {
-  getAllSellers,
-  getSellerCatalog,
-  createOrder,
-} = require("../controllers/buyer");
+const buyer = require("../controllers/buyer");
 
-buyerRouter.get("/list-of-sellers", getAllSellers);
+const validate = require("../middlewares/joi");
+const { listCatalog, createOrder } = require("../middlewares/schema");
 
-buyerRouter.get("/seller-catalog/:seller_id", getSellerCatalog);
+buyerRouter.get("/list-of-sellers", buyer.getAllSellers);
 
-buyerRouter.post("/create-order/:seller_id", createOrder);
+buyerRouter.get(
+  "/seller-catalog/:seller_id",
+  validate(listCatalog),
+  buyer.getSellerCatalog
+);
+
+buyerRouter.post(
+  "/create-order/:seller_id",
+  validate(createOrder),
+  buyer.createOrder
+);
 
 module.exports = buyerRouter;

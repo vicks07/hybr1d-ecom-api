@@ -2,16 +2,13 @@ const express = require("express");
 
 const authRouter = express.Router();
 
-const {
-  registrationSchema,
-  loginSchema,
-} = require("../middlewares/schema/user");
+const { registration, login } = require("../middlewares/schema");
 const validate = require("../middlewares/joi");
 
-const { login, register } = require("../controllers/auth");
+const auth = require("../controllers/auth");
 
-authRouter.post("/register", validate(registrationSchema), register);
+authRouter.post("/register", validate(registration), auth.register);
 
-authRouter.post("/login", validate(loginSchema), login);
+authRouter.post("/login", validate(login), auth.login);
 
 module.exports = authRouter;

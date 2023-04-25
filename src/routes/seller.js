@@ -4,10 +4,25 @@ const sellerRouter = express.Router();
 
 const Seller = require("../controllers/seller");
 
-sellerRouter.get("/orders/:seller_id", Seller.getOrders);
+const validate = require("../middlewares/joi");
+const {
+  product,
+  createCatalog,
+  listCatalog: listSellerOrders,
+} = require("../middlewares/schema");
 
-sellerRouter.post("/create-catalog", Seller.createCatalog);
+sellerRouter.get(
+  "/orders/:seller_id",
+  validate(listSellerOrders),
+  Seller.getOrders
+);
 
-sellerRouter.post("/add-product", Seller.addProducts);
+sellerRouter.post(
+  "/create-catalog",
+  validate(createCatalog),
+  Seller.createCatalog
+);
+
+sellerRouter.post("/add-product", validate(product), Seller.addProducts);
 
 module.exports = sellerRouter;

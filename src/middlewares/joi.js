@@ -4,7 +4,8 @@ const sendResponse = require("../helpers/response");
 function validate(schema) {
   return async function (req, res, next) {
     try {
-      await schema.validateAsync(req.body);
+      const data = { ...req.body, ...req.params, ...req.query };
+      await schema.validateAsync(data);
       next();
     } catch (err) {
       return sendResponse(res, {
