@@ -5,7 +5,7 @@ const productModel = {};
 productModel.findOne = (where, options) =>
   Products.findOne({ where, ...options });
 productModel.findAll = (where, options) =>
-  Products.findAndCountAll({ where, includes: [], ...options });
+  Products.findAndCountAll({ ...where, ...options });
 productModel.add = async (params) => {
   try {
     const response = await Products.create(params, {

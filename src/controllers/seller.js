@@ -1,9 +1,11 @@
 const Products = require("../services/products");
 const Catalogs = require("../services/catalogs");
 const sendResponse = require("../helpers/response");
+const Users = require("../services/users");
+const Orders = require("../services/orders");
 
 const getAllOrders = async (req, res) => {
-  const users = await findAllSellers({ userType: "seller" });
+  const users = await Users.findAllUsers({ userType: "seller" });
   return sendResponse(res, {
     data: users,
     status: 200,
@@ -53,4 +55,19 @@ const addProducts = async (req, res) => {
   });
 };
 
-module.exports = { getAllOrders, addProducts, createCatalog };
+const getOrders = async (req, res) => {
+  const resp = await Orders.list({ seller: req.params?.seller_id });
+  if (resp.isError)
+    return sendResponse(res, {
+      data: null,
+      status: 400,
+      msg: resp.msg,
+    });
+  return sendResponse(res, {
+    data: resp,
+    status: 200,
+    msg: "Success",
+  });
+};
+
+module.exports = { getAllOrders, addProducts, createCatalog, getOrders };

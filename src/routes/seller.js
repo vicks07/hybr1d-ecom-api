@@ -4,8 +4,7 @@ const sellerRouter = express.Router();
 
 const Seller = require("../controllers/seller");
 
-sellerRouter.get("/orders", (req, res) => {
-});
+sellerRouter.get("/orders/:seller_id", Seller.getOrders);
 
 sellerRouter.post("/create-catalog", Seller.createCatalog);
 

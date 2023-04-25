@@ -32,7 +32,7 @@ const list = async (data) => {
       ],
     };
     const catalog = await Catalogs.findAll(filter, { raw: true });
-    if (!catalog) {
+    if (catalog.count == 0) {
       throw Error("No catalog found for the seller");
     }
     return catalog;

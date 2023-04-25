@@ -78,7 +78,6 @@ const findAllUsers = async (data = {}) => {
       },
       {
         attributes: ["id", "name", "email", "phone"],
-        raw: true,
       }
     );
     if (users?.count == 0) throw Error("Users Not Found");

@@ -4,7 +4,7 @@ const UserTypes = require("./UserTypes");
 const Orders = require("./Orders");
 const Products = require("./Products");
 const Catalogs = require("./Catalogs");
-// const OrderItems = require("./OrderItems");
+const OrderItems = require("./OrderItems");
 
 Users.belongsTo(UserTypes, { foreignKey: "user_type" });
 UserTypes.hasMany(Users, { foreignKey: "user_type" });
@@ -18,13 +18,16 @@ Products.belongsTo(Catalogs, { foreignKey: "catalog_id" });
 Orders.belongsToMany(Products, {
   foreignKey: "product_id",
   through: "order_items",
+  as: "products",
 });
 Products.belongsToMany(Orders, {
   foreignKey: "order_id",
   through: "order_items",
+  as: "orders",
 });
-Users.hasMany(Orders, { foreignKey: "seller" });
-Users.hasMany(Orders, { foreignKey: "buyer" });
+
+Users.hasMany(Orders, { foreignKey: "seller", as: "seller" });
+Users.hasMany(Orders, { foreignKey: "buyer", as: "buyer" });
 
 Orders.belongsTo(Users, { foreignKey: "seller" });
 Orders.belongsTo(Users, { foreignKey: "buyer" });
@@ -37,5 +40,5 @@ module.exports = {
   Products,
   Catalogs,
   Orders,
-  // OrderItems,
+  OrderItems,
 };
