@@ -22,12 +22,11 @@ const createUser = async (data) => {
       };
       const newUser = await Users.create(user);
       if (newUser) {
-        return await Users.findOne(
-          {
-            id: user.id,
-          },
-          { attributes: ["id", "name", "email", "phone"], raw: true }
-        );
+        const temp = await Users.findById(newUser.id, {
+          attributes: ["id", "name", "email", "phone"],
+          raw: true,
+        });
+        return temp;
       }
       throw Error("Error while creating the user");
     }

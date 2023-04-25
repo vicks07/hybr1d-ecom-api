@@ -1,7 +1,9 @@
+const { uuid } = require("../helpers/utility");
 const { Products } = require("../model/products");
 
 const add = async (data) => {
   try {
+    data.id = uuid();
     const product = await Products.add(data);
     if (!product) {
       throw Error("Error while adding the product");

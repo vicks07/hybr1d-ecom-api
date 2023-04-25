@@ -7,8 +7,10 @@ catalogModel.findOne = (where, options) =>
     ...where,
     ...options,
   });
+
+catalogModel.findById = (id, options = {}) => Users.findByPk(id, options);
 catalogModel.findAll = (where, options) =>
-  Catalogs.findAndCountAll({ ...where, ...options });
+  Catalogs.findAndCountAll({ ...where }, options);
 
 catalogModel.create = async (params) => {
   const response = await Catalogs.create(params, {

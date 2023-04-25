@@ -25,7 +25,7 @@ Users.init(
       type: DataTypes.STRING,
       allowNull: false,
     },
-    user_type: {
+    userType: {
       type: DataTypes.INTEGER,
       allowNull: false,
     },
@@ -35,6 +35,7 @@ Users.init(
     tableName: "users",
     modelName: "users",
     timestamps: true,
+    underscored: true,
   }
 );
 

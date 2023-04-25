@@ -28,7 +28,7 @@ const createCatalog = async (req, res) => {
 };
 
 const addProducts = async (req, res) => {
-  const catalog = await Catalogs.list({ seller: req.body.seller });
+  const catalog = await Catalogs.getBySeller({ seller: req.body.seller });
   if (catalog) {
     const catalogId = catalog.id;
     req.body.catalog_id = catalogId;

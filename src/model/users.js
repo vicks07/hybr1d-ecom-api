@@ -6,6 +6,8 @@ const userTypeModel = {};
 userModel.findOne = (where, options = {}) =>
   Users.findOne({ ...where, ...options });
 
+userModel.findById = (id, options = {}) => Users.findByPk(id, options);
+
 userModel.findAll = (where, options = {}) =>
   Users.findAndCountAll({
     ...where,

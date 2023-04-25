@@ -11,12 +11,11 @@ Orders.init(
     },
     seller: DataTypes.UUID,
     buyer: DataTypes.UUID,
-    // products: DataTypes.ARRAY,
   },
   {
     sequelize,
     tableName: "orders",
-    modelName: "catalogs",
+    modelName: "orders",
     timestamps: true,
   }
 );
