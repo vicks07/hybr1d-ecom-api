@@ -16,6 +16,7 @@ UserTypes.init(
     tableName: "usertypes",
     modelName: "usertypes",
     timestamps: true,
+    underscored: true,
   }
 );
 

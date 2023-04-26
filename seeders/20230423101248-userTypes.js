@@ -1,4 +1,5 @@
 "use strict";
+const { USERTYPE } = require("../src/config/constant");
 
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
@@ -16,16 +17,18 @@ module.exports = {
       "usertypes",
       [
         {
-          name: "seller",
+          id: 1,
+          name: USERTYPE.SELLER,
           status: true,
-          createdAt: new Date(),
-          updatedAt: new Date(),
+          created_at: new Date(),
+          updated_at: new Date(),
         },
         {
-          name: "buyer",
+          id: 2,
+          name: USERTYPE.BUYER,
           status: true,
-          createdAt: new Date(),
-          updatedAt: new Date(),
+          created_at: new Date(),
+          updated_at: new Date(),
         },
       ],
       {}
@@ -39,5 +42,6 @@ module.exports = {
      * Example:
      * await queryInterface.bulkDelete('People', null, {});
      */
+    await queryInterface.bulkDelete("usertypes");
   },
 };

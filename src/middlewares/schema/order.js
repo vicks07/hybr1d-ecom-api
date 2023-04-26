@@ -16,6 +16,11 @@ const createOrder = Joi.object({
     })
     .required(),
   products: Joi.array().items(product),
+  seller_id: Joi.string()
+    .guid({
+      version: ["uuidv4"],
+    })
+    .required(),
 });
 
 module.exports = {

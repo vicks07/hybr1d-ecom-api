@@ -17,6 +17,7 @@ Orders.init(
     tableName: "orders",
     modelName: "orders",
     timestamps: true,
+    underscored: true,
   }
 );
 

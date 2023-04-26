@@ -25,6 +25,7 @@ Catalogs.init(
     tableName: "catalogs",
     modelName: "catalogs",
     timestamps: true,
+    underscored: true,
   }
 );
 
