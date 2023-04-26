@@ -8,9 +8,9 @@
     "start": "NODE_ENV=production node server.js",
     "dev": "NODE_ENV=development nodemon server.js",
     "seed:dev": "npx sequelize-cli db:seed:all --env development",
-    "migrate:dev": "npx sequelize db:migrate --env development",
-    "migrate-undo:dev": "npx sequelize-cli db:migrate:undo --env development",
-    "set-database": "SETDB=true node src/script/dbsync.js"
+    "seed:prod": "npx sequelize-cli db:seed:all --env production",
+    "set-database-dev": "SETDB=true --env development node src/script/dbsync.js",
+    "set-database-prod": "SETDB=true --env production node src/script/dbsync.js"
   },
   "repository": {
     "type": "git",
@@ -28,6 +28,7 @@
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
     "joi": "^17.9.2",
+    "jsonwebtoken": "^9.0.0",
     "pg": "^8.10.0",
     "pg-hstore": "^2.3.4",
     "sequelize": "^6.31.0",

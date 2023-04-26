@@ -5,6 +5,7 @@ const Orders = require("./Orders");
 const Products = require("./Products");
 const Catalogs = require("./Catalogs");
 const OrderItems = require("./OrderItems");
+const Tokens = require("./Tokens");
 
 Users.belongsTo(UserTypes, { foreignKey: "user_type" });
 UserTypes.hasMany(Users, { foreignKey: "user_type" });
@@ -41,4 +42,5 @@ module.exports = {
   Catalogs,
   Orders,
   OrderItems,
+  Tokens,
 };

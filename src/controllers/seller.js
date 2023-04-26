@@ -56,7 +56,7 @@ const addProducts = async (req, res) => {
 };
 
 const getOrders = async (req, res) => {
-  const resp = await Orders.list({ seller: req.params?.seller_id });
+  const resp = await Orders.list({ seller: req.user?.id });
   if (resp.isError)
     return sendResponse(res, {
       data: null,

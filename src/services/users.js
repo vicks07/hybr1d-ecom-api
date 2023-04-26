@@ -1,7 +1,12 @@
 const { Users, UserType } = require("../model/users");
 const { uuid, hashPassword, comparePassword } = require("../helpers/utility");
+const {
+  generateAccessToken,
+  generateRefreshToken,
+} = require("../helpers/auth");
 const bcrypt = require("bcrypt");
 const { UserTypes } = require("../model/schema");
+const { create } = require("./token");
 
 const createUser = async (data) => {
   try {
@@ -49,6 +54,19 @@ const login = async (data) => {
     const result = await comparePassword(password, user.password);
     if (!result) {
       throw Error("Invalid Password");
+    }
+
+    const updatedUser = {
+      id: user.id,
+      name: user.name,
+    };
+    const accessToken = generateAccessToken(updatedUser);
+    const refreshToken = generateRefreshToken(updatedUser);
+    user.accessToken = accessToken;
+    user.refreshToken = refreshToken;
+    const tokenResp = await create({ token: refreshToken });
+    if (tokenResp.isError) {
+      throw Error("Issue regarding auth token");
     }
     return user;
   } catch (err) {

@@ -5,17 +5,9 @@ const sellerRouter = express.Router();
 const Seller = require("../controllers/seller");
 
 const validate = require("../middlewares/joi");
-const {
-  product,
-  createCatalog,
-  listCatalog: listSellerOrders,
-} = require("../middlewares/schema");
+const { product, createCatalog } = require("../middlewares/schema");
 
-sellerRouter.get(
-  "/orders/:seller_id",
-  validate(listSellerOrders),
-  Seller.getOrders
-);
+sellerRouter.get("/orders", Seller.getOrders);
 
 sellerRouter.post(
   "/create-catalog",

@@ -13,6 +13,10 @@ const constants = {
     BUYER: "buyer",
     SELLER: "seller",
   },
+  JWT: {
+    ACCESS_TOKEN: process.env.JWT_ACCESS_TOKEN,
+    REFRESH_TOKEN: process.env.JWT_REFRESH_TOKEN,
+  },
   // ERROR_CODES: {
   //     OK: HTMLOutputElement.
   // }
